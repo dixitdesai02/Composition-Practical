@@ -1,0 +1,156 @@
+[{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/2015_Mazda_MX-5_ND_2.0_SKYACTIV-G_160_i-ELOOP_Rubinrot-Metallic_Vorderansicht.jpg/400px-2015_Mazda_MX-5_ND_2.0_SKYACTIV-G_160_i-ELOOP_Rubinrot-Metallic_Vorderansicht.jpg",
+    "title": "Mazda MX-5",
+    "start_production": 1989,
+    "class": "Sports car Roadster",
+    "price": "$51000",
+    "description": "Lightweight two-passenger sports car manufactured and marketed by Mazda with a front mid-engine, rear-wheel-drive layout."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VW_Kuebelwagen_1.jpg/400px-VW_Kuebelwagen_1.jpg",
+    "title": "Volkswagen Kübelwagen",
+    "start_production": 1979,
+    "class": "Military vehicle",
+    "description": "Light military vehicle designed by Ferdinand Porsche and built by Volkswagen during World War II for use by the German military."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/2014_Porsche_Cayenne_%2892A_MY14%29_GTS_wagon_%282015-08-07%29_01.jpg/400px-2014_Porsche_Cayenne_%2892A_MY14%29_GTS_wagon_%282015-08-07%29_01.jpg",
+    "title": "Porsche Cayenne",
+    "start_production": 2002,
+    "class": "Mid-size luxury SUV",
+    "price": "$125000",
+    "description": "Luxury mid-size luxury crossover SUV that offers the best of both worlds - the style and performance of a sports car and the comfort and luxury of an SUV."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Vintage_car_at_the_Wirral_Bus_%26_Tram_Show_-_DSC03336.JPG/400px-Vintage_car_at_the_Wirral_Bus_%26_Tram_Show_-_DSC03336.JPG",
+    "title": "Vauxhall Chevette",
+    "start_production": 1975,
+    "class": "Supermini",
+    "price": "$45000",
+    "description": "A front-engine, rear-drive subcompact manufactured and marketed by Chevrolet for model years 1976-1987 as a three-door or five-door hatchback. "
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Dynamixion_car_by_Buckminster_Fuller_1933_%28side_views%29.jpg/400px-Dynamixion_car_by_Buckminster_Fuller_1933_%28side_views%29.jpg",
+    "title": "Dymaxion car",
+    "start_production": 1933,
+    "class": "Concept car",
+    "description": "It is a streamlined, futuristic vehicle with three wheels, a periscope, and an ovoid body that reminded observers of a tadpole or a flying fish"
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Ford_Crown_Victoria_LX.jpg/400px-Ford_Crown_Victoria_LX.jpg",
+    "title": "Ford Crown Victoria",
+    "start_production": 1955,
+    "class": "Full-size Ford",
+    "price": "$75000",
+    "description": "The Crown Victoria was produced on the rear-wheel drive, body-on-frame Ford Panther platform"
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Plymouth_Superbird.jpg/400px-Plymouth_Superbird.jpg",
+    "title": "Plymouth Superbird",
+    "start_production": 1970,
+    "class": "Race car",
+    "price": "$89000",
+    "description": "ighly modified, short-lived version of the Plymouth Road Runner with applied graphic images as well as a distinctive horn sound both referencing the popular Looney Tunes cartoon character the Road Runner."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/2nd-Saab-9000-hatch.jpg/400px-2nd-Saab-9000-hatch.jpg",
+    "title": "Saab 9000",
+    "start_production": 1984,
+    "class": "Executive car",
+    "description": "Although the 9000 was initially introduced as a five-door hatchback, it has evolved into a four-door notchback with a more traditional profile as well as a"
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/2003-2005_Pontiac_Sunfire.jpg/400px-2003-2005_Pontiac_Sunfire.jpg",
+    "title": "Pontiac Sunfire",
+    "start_production": 1994,
+    "class": "Compact",
+    "price": "$35000",
+    "description": "The Pontiac Sunfire is a compact car by Pontiac that was introduced for the 1995 model year to replace the Sunbird. Not only was the name changed, but dramatic styling changes were included as well."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/1971_AMC_Javelin_SST_red_Kenosha_street.JPG/400px-1971_AMC_Javelin_SST_red_Kenosha_street.JPG",
+    "title": "AMC Javelin",
+    "start_production": 1967,
+    "class": "Muscle car",
+    "price": "$50000",
+    "description": "The AMC Javelin is an American front-engine, rear-wheel-drive, two-door hardtop automobile manufactured by American Motors Corporation (AMC) across two generations"
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Jaguar_X-Type_Estate_front_20080731.jpg/400px-Jaguar_X-Type_Estate_front_20080731.jpg",
+    "title": "Jaguar X-Type",
+    "start_production": 2001,
+    "class": "Compact executive car",
+    "description": "Considered a large family car in Europe and a compact car in the US, the X-Type was part of the compact-executive market segment and was sold in four-door saloon and five-door estate body styles."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VW_Phaton_%282._Facelift%29_%E2%80%93_Frontansicht%2C_7._Mai_2011%2C_D%C3%BCsseldorf.jpg/400px-VW_Phaton_%282._Facelift%29_%E2%80%93_Frontansicht%2C_7._Mai_2011%2C_D%C3%BCsseldorf.jpg",
+    "title": "Volkswagen Phaeton",
+    "start_production": 2002,
+    "class": "Full-size luxury car",
+    "price": "$43000",
+    "description": "It is available with Automatic transmission. Depending upon the variant and fuel type the Phaeton has a mileage of 12.8 kmpl & Ground clearance of Phaeton is 128mm."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Pontiac_G6.jpg/400px-Pontiac_G6.jpg",
+    "title": "Pontiac G6",
+    "start_production": 2004,
+    "class": "Midsize",
+    "description": "A mid-size car that was produced by General Motors under the Pontiac brand. It was introduced in 2004 for the 2005 model year to replace the Grand Am."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ford500a.JPG/400px-Ford500a.JPG",
+    "title": "Ford Five Hundred",
+    "start_production": 2004,
+    "class": "Full-size",
+    "price": "$39000",
+    "description": "A distinguishing feature of the Ford Five Hundred is its tall exterior height; at 61.5 inches tall, it was over 5 inches taller than the Ford Taurus sold alongside it. A key feature driving the use of the tall body design was the upward"
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/PontiacSolstice.jpg/400px-PontiacSolstice.jpg",
+    "title": "Pontiac Solstice",
+    "start_production": 2005,
+    "class": "Roadster, coupe",
+    "price": "$79000",
+    "description": "The Pontiac Solstice is a sports car that was produced by Pontiac. Introduced at the 2004 North American International Auto Show, the Solstice roadster"
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Fiat_tipo_f.jpg/400px-Fiat_tipo_f.jpg",
+    "title": "Fiat Tipo",
+    "start_production": 1988,
+    "class": "Small family car",
+    "price": "$25000",
+    "description": "The Fiat Tipo Hatchback and Station Wagon engine range is built to take on everyday driving and deliver the performance you need for adventure."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/1985-89_Plymouth_Reliant_K_LE.png/400px-1985-89_Plymouth_Reliant_K_LE.png",
+    "title": "Plymouth Reliant",
+    "start_production": 1981,
+    "class": "Mid-size",
+    "price": "$37000",
+    "description": "Boxy, underpowered and unremarkable, the Plymouth Reliant, or rather its chassis, was one of the most revolutionary cars of the early 1980s."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/1978_chevette.JPG/400px-1978_chevette.JPG",
+    "title": "Chevrolet Chevette",
+    "start_production": 1975,
+    "class": "Subcompact",
+    "price": "$41000",
+    "description": "The Chevrolet Chevette is a front-engine, rear-drive subcompact manufactured and marketed by Chevrolet for model years 1976–1987 as a three-door or five-door"
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Seat_Leon_1.4_TSI_Start%26Stop_Style_%28III%29_%E2%80%93_Frontansicht%2C_10._August_2013%2C_Ratingen.jpg/400px-Seat_Leon_1.4_TSI_Start%26Stop_Style_%28III%29_%E2%80%93_Frontansicht%2C_10._August_2013%2C_Ratingen.jpg",
+    "title": "SEAT León",
+    "start_production": 2006,
+    "class": "Small family car",
+    "price": "$22500",
+    "description": "The new SEAT Leon is a family car, along the same lines as a Ford Focus or Toyota Corolla, but with sporty-looking bodywork and lots of hi-tech equipment."
+},
+{
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Chevrolet_Corsica_1994.jpg/400px-Chevrolet_Corsica_1994.jpg",
+    "title": "Chevrolet Corsica",
+    "start_production": 1987,
+    "class": "Compact car",
+    "price": "$18000",
+    "description": "The Corsica was built upon the L-body platform. It shared the L-body with the 2-door Beretta, and the rebadged revival of the Pontiac Tempest which was essentially the same car, but was only sold in Canada. "
+}
+]
