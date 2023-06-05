@@ -37,49 +37,48 @@
     </div>
 </template>
 
-<script>
-    export default {
-        name: "LoginForm",
-        data() {
-            return {
-                schema: {
-                    email: "required|email",
-                    password: "required"
-                },
-                inputData: {
-                    email: "",
-                    password: ""
-                },
-                showLoading: false
-            }
-        },
-        computed: {
-            ...mapState(useAuthStore, ['users'])
-        },
-        methods: {
-            ...mapActions(useAuthStore, ['getAllUsers', 'login']),
-            async handleLogin() {
-                try {
-                    this.showLoading = true;
+<script setup>
+    import { useRouter } from 'vue-router'
+    import { reactive, ref } from 'vue';
+    import { useAuthStore } from '../stores/auth';
 
-                    await this.getAllUsers();
+    const schema = {
+        email: "required|email",
+        password: "required"
+    };
 
-                    let matchedUser = this.users.find((user) => ( user.email === this.inputData.email && user.password === this.inputData.password ));
+    const inputData = reactive({
+        email: "",
+        password: ""
+    });
 
-                    if (matchedUser) {
-                        this.login(matchedUser);
-                    }
-                    else {
-                        throw new Error("Invalid Credentials!");
-                    }
+    let showLoading = ref(false);
 
-                    this.$router.push("/");
-                }
-                catch(error) {
-                    alert(error);
-                }
-                this.showLoading = false;
-            }
+    const authStore = useAuthStore();
+
+    const router = useRouter();
+
+    async function handleLogin() {
+
+    try {
+        showLoading = true;
+
+        await authStore.getAllUsers();
+
+        let matchedUser = authStore.users.find((user) => ( user.email === inputData.email && user.password === inputData.password ));
+
+        if (matchedUser) {
+            authStore.login(matchedUser);
         }
+        else {
+            throw new Error("Invalid Credentials!");
+        }
+
+        router.push("/");
+    }
+    catch(error) {
+        alert(error);
+    }    
+        showLoading = false;
     }
 </script>

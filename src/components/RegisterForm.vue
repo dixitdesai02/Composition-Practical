@@ -138,55 +138,53 @@
     </div>
 </template>
 
-<script>
-    import { mapActions } from 'pinia';
+<script setup>
+    import { reactive, ref, computed } from 'vue';
+    import { useRouter } from 'vue-router';
+    import {useAuthStore} from '../stores/auth';
 
-    export default {
-        name: "RegisterForm",
-        data() {
-            return {
-                schema: {
-                    name: "required|min:2|max:20",
-                    email: "required|email",
-                    password: "required|min:8|max:12|regex:^(?=.*\\d)(?=.*[\\W_]).+$",
-                    confirmPassword: "required|confirmed:@password",
-                    role: "required",
-                    gender: "required",
-                    dob: "required|dob"
-                },
-                inputData : {
-                    name: "",
-                    email: "",
-                    password: "",
-                    role: "",
-                    gender: "",
-                    dob: ""
-                },
-                showLoading: false
-            }
-        },
-        computed: {
-            getAge() {
-                return new Date().getFullYear() - new Date(this.inputData.dob).getFullYear();
-            }
-        },
-        methods: {
-            ...mapActions(useAuthStore, ['register']),
-            async handleRegister() {
-                this.showLoading = true;
+    const schema = {
+        name: "required|min:2|max:20",
+        email: "required|email",
+        password: "required|min:8|max:12|regex:^(?=.*\\d)(?=.*[\\W_]).+$",
+        confirmPassword: "required|confirmed:@password",
+        role: "required",
+        gender: "required",
+        dob: "required|dob"
+    };
 
-                this.inputData.age = this.getAge;
-                try {
-                    await this.register(this.inputData);
+    const inputData = reactive({
+        name: "",
+        email: "",
+        password: "",
+        role: "",
+        gender: "",
+        dob: ""
+    })
 
-                    this.$router.push("/login");
-                }
-                catch (error) {
-                    alert("Error! " + error);
-                }
+    const getAge = computed(() => {
+        return new Date().getFullYear() - new Date(inputData.dob).getFullYear();
+    });
 
-                this.showLoading = false;
-            }
+
+    const router = useRouter();
+    const authStore = useAuthStore();
+
+    let showLoading = ref(false);
+
+    async function handleRegister() {
+        showLoading.value = true;
+
+        inputData.age = getAge;
+        try {
+            await authStore.register(inputData);
+
+            router.push("/login");
         }
+        catch (error) {
+            alert("Error! " + error);
+        }
+
+        showLoading.value = false;
     }
 </script>

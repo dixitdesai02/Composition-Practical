@@ -3,10 +3,10 @@
         <main v-if="!isLoading" class="w-5/6 max-w-screen-xl mx-auto">
             <div class="button-wrapper flex flex-row justify-center sm:justify-end">
                 <button @click="showAddForm" class="mt-3 px-5 py-2 text-md font-semibold text-center text-slate-700 hover:bg-slate-300 bg-slate-200 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-400">
-                        ADD CAR
+                    ADD CAR
                 </button>
             </div>
-            <section v-if="cars.length === 0" class="py-5 flex flex-col">
+            <section v-if="!cars" class="py-5 flex flex-col">
                 <h2 class="text-4xl font-semibold text-slate-700 text-center">No Cars Found!</h2>
                 <img class="w-full sm:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto" src="/no-cars.webp" alt="No Cars" />
             </section>
@@ -21,58 +21,47 @@
     </section>
 </template>
 
-<script>
+<script setup>
     import GalleryCard from "../components/GalleryCard.vue"
     import ModalForm from '../components/ModalForm.vue';
     import Loader from "../components/Loader.vue";
     import Swal from 'sweetalert2';
-    import { mapActions, mapState, mapWritableState } from "pinia";
+    import { storeToRefs } from "pinia";
     import { useCarData } from "../stores/carData";
     import { useModalStore } from "../stores/modalStore";
+    import { ref } from "vue";
 
-    export default {
-        name: 'Home',
-        data() {
-            return {
-                isLoading: true,
-            }
-        },
-        async created() {
-            this.fetchData();
-        },
-        computed: {
-            ...mapWritableState(useModalStore, ['showModal', 'typeOfModal', 'editData']),
-            ...mapState(useCarData, ['cars'])
-            
-        },
-        methods: {
-            ...mapActions(useCarData, ['fetchCars']),
+    let isLoading = ref(true);
 
-            showPrice(title, price) {
-                Swal.fire({
-                    title: title,
-                    html: `Price:<strong> $${price} /-</strong>`, 
-                    confirmButtonText: "Okay!",
-                    confirmButtonColor: "#475569"
-                })
-            },
-            showAddForm() {
-                this.showModal = true;
-                this.typeOfModal = 'add';
-                this.editData = {}
-            },
-            async fetchData() {
-                this.isLoading = true;
-                await this.fetchCars();
-                this.isLoading = false;
-            }
-        },
-        components: {
-            GalleryCard,
-            ModalForm,
-            Loader
-        }
+    const carStore = useCarData();
+    const { cars } = storeToRefs(carStore);
+
+    async function fetchData() {
+        await carStore.fetchCars();
+        isLoading.value = false;
     }
+    
+    fetchData();
+
+
+    const modalStore = useModalStore();
+    const { showModal, typeOfModal, editData } = storeToRefs(modalStore);
+
+    function showAddForm() {
+        showModal.value = true;
+        typeOfModal.value = 'add';
+        editData.value = {}
+    }
+
+    function showPrice(title, price) {
+        Swal.fire({
+            title: title,
+            html: `Price:<strong> $${price} /-</strong>`, 
+            confirmButtonText: "Okay!",
+            confirmButtonColor: "#475569"
+        })
+    }
+
 </script>
 
 <style scoped>
