@@ -25,7 +25,6 @@
 
 <script setup>
     import Swal from 'sweetalert2'
-    import { defineProps } from 'vue'
     import { useCarData } from '../stores/carData';
     import { useModalStore } from '../stores/modalStore';
     import { storeToRefs } from 'pinia';
@@ -41,7 +40,6 @@
     function redirectToDetails() {
         router.push(`/details/${props.car.id}`);
     }
-
 
     function showEditForm() {
         showModal.value = true;

@@ -13,7 +13,7 @@
                     class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.email"
                     />
-                    <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Email Address</label>
+                    <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Email Address*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="email"/>
                 </div>
                 <div class="relative z-0 w-full mb-5">
@@ -25,7 +25,7 @@
                     class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.password"
                     />
-                    <label for="password" class="absolute duration-300 top-3 origin-0 text-gray-500">Password</label>
+                    <label for="password" class="absolute duration-300 top-3 origin-0 text-gray-500">Password*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="password"/>
                 </div>
             

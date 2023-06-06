@@ -23,7 +23,7 @@
                         class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                         v-model="formData.name"
                         />
-                        <label for="name" class="absolute duration-300 top-3 origin-0 text-gray-500">Name</label>
+                        <label for="name" class="absolute duration-300 top-3 origin-0 text-gray-500">Name*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="name"/>
                     </div>
     
@@ -37,7 +37,7 @@
                             class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                             />
                         </Field>
-                        <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Detail</label>
+                        <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Detail*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="details"/>
                     </div>
     
@@ -49,7 +49,7 @@
                         class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                         v-model="formData.image"
                         />
-                        <label for="image" class="absolute duration-300 top-3 origin-0 text-gray-500">Image URL</label>
+                        <label for="image" class="absolute duration-300 top-3 origin-0 text-gray-500">Image URL*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="image"/>
                     </div>
     
@@ -64,7 +64,7 @@
                         v-model="formData.price"
                         />
                         <div class="absolute top-0 left-0 mt-3 ml-1 text-gray-400">$</div>
-                        <label for="price" class="absolute duration-300 top-3 left-5 origin-0 text-gray-500">Car Price</label>
+                        <label for="price" class="absolute duration-300 top-3 left-5 origin-0 text-gray-500">Car Price*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="price"/>
                     </div>
     
@@ -125,7 +125,7 @@
                 notify();
             }
             catch(error) {
-                alert("Error! ", error)
+                alert(error)
             }
         }
         else {
@@ -134,7 +134,7 @@
                 notify();
             }
             catch(error) {
-                alert("Error! ", error)
+                alert(error)
             }
         }
         closeModal();

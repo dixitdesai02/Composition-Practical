@@ -13,7 +13,7 @@
                     class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.name"
                     />
-                    <label for="name" class="absolute duration-300 top-3 origin-0 text-gray-500">Name</label>
+                    <label for="name" class="absolute duration-300 top-3 origin-0 text-gray-500">Name*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="name"/>
                 </div>
 
@@ -26,7 +26,7 @@
                     class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.email"
                     />
-                    <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Email Address</label>
+                    <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Email Address*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="email"/>
                 </div>
                 <div class="relative z-0 w-full mb-5">
@@ -38,7 +38,7 @@
                     class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.password"
                     />
-                    <label for="password" class="absolute duration-300 top-3 origin-0 text-gray-500">Password</label>
+                    <label for="password" class="absolute duration-300 top-3 origin-0 text-gray-500">Password*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="password"/>
                 </div>
                 <div class="relative z-0 w-full mb-5">
@@ -49,12 +49,12 @@
                     placeholder=" "
                     class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     />
-                    <label for="confirmpassword" class="absolute duration-300 top-3 origin-0 text-gray-500">Confirm Password</label>
+                    <label for="confirmpassword" class="absolute duration-300 top-3 origin-0 text-gray-500">Confirm Password*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="confirmPassword"/>
                 </div>
                 <div class="w-full mb-5">
                         <div class="w-full flex">
-                            <label for="role" class="text-gray-500">Role: </label>
+                            <label for="role" class="text-gray-500">Role:* </label>
                             <Field
                             name="role"
                             as="select"
@@ -113,7 +113,7 @@
                     class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.dob"
                     />
-                    <label for="dob" class="absolute duration-300 top-3 origin-0 text-gray-500">Date Of Birth</label>
+                    <label for="dob" class="absolute duration-300 top-3 origin-0 text-gray-500">Date Of Birth*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="dob"/>
                 </div>
 
@@ -127,7 +127,7 @@
                     class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="getAge"
                     />
-                    <label for="age" class="absolute duration-300 top-3 origin-0 text-gray-500">Age</label>
+                    <label for="age" class="absolute duration-300 top-3 origin-0 text-gray-500">Age*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="age"/>
                 </div>
 
