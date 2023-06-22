@@ -4,8 +4,6 @@
     </section>
 </template>
 
-<script>
-    export default {
-        name: "Loader"
-    }
+<script setup>
+
 </script>

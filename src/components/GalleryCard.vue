@@ -9,7 +9,7 @@
                 {{ car.details?.length > 110 ? car.details?.slice(0, 100) + "...": car.details }}
             </p>
             <div class="flex items-center justify-between">
-                <button @click="showDetails" :disabled="!car.price" :class="{ disabledBtn: car.price ? false : true }" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300">
+                <button @click="redirectToDetails" :disabled="!car.price" :class="{ disabledBtn: car.price ? false : true }" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300">
                     {{car.price ? 'Info': 'Available Soon..'}}
                    <svg v-if="car.price" aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
@@ -23,60 +23,57 @@
     </div>
 </template>
 
-<script>
-    import ModalForm from './ModalForm.vue';
+<script setup>
     import Swal from 'sweetalert2'
-    import { mapActions, mapWritableState } from 'pinia';
     import { useCarData } from '../stores/carData';
     import { useModalStore } from '../stores/modalStore';
+    import { storeToRefs } from 'pinia';
+    import { useRouter } from 'vue-router';
 
-    export default {
-        name: "GalleryCard",
-        props: ["car"],
-        computed: {
-            ...mapWritableState(useModalStore, ['showModal', 'typeOfModal', 'editData'])
-        },
-        methods: {
-            ...mapActions(useCarData, ['deleteCar']),
+    const props = defineProps(['car']);
 
-            showDetails() {
-                this.$router.push(`/details/${this.car.id}`);
-            },
-            handleDelete() {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                    }).then(async (result) => {
-                    if (result.isConfirmed) {
-                        try {
-                            await this.deleteCar(this.car.id);
+    const modalStore = useModalStore();
+    const { showModal, typeOfModal, editData } = storeToRefs(modalStore);
 
-                            Swal.fire(
-                                'Deleted!',
-                                `${this.car.name} has been Deleted`,
-                                'success'
-                            )
-                        }
-                        catch (error) {
-                            alert(error);
-                        }
-                    }
-                })
-            },
-            showEditForm() {
-                this.showModal = true;
-                this.typeOfModal = 'edit',
-                this.editData = { ...this.car }
+    const router = useRouter();
+
+    function redirectToDetails() {
+        router.push(`/details/${props.car.id}`);
+    }
+
+    function showEditForm() {
+        showModal.value = true;
+        typeOfModal.value = 'edit',
+        editData.value = { ...props.car }
+    }
+
+    const carStore = useCarData();
+
+    function handleDelete() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await carStore.deleteCar(props.car.id);
+
+                    Swal.fire(
+                        'Deleted!',
+                        `${props.car.name} has been Deleted`,
+                        'success'
+                    )
+                }
+                catch (error) {
+                    alert(error);
+                }
             }
-        },
-        components: {
-            ModalForm
-        }
+        })
     }
 </script>
 

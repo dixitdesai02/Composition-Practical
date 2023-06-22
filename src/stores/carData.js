@@ -32,7 +32,7 @@ export const useCarData = defineStore('carData', {
                 await this.fetchCars();
             }
             catch (error) {
-                alert("Error! Car could not be Added!");
+                throw new Error("Car could not be Added!");
             }
         },
 
@@ -42,7 +42,7 @@ export const useCarData = defineStore('carData', {
                 await this.fetchCars();
             }
             catch(error) {
-                alert("Error! Car Could not be Updated!");
+                throw new Error("Car Could not be Updated!");
             }
         },
 
@@ -52,7 +52,7 @@ export const useCarData = defineStore('carData', {
                 await this.fetchCars();
             }
             catch(error) {
-                throw new Error('Error! Car could not be Deleted!'); 
+                throw new Error('Car could not be Deleted!'); 
             }
         }
     }

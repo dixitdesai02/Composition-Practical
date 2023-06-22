@@ -6,7 +6,7 @@
                 <h3 class="text-md mt-1 text-sky-300 font-semibold">-Driving Dreams</h3>
             </RouterLink>
             <div class="nav-list bg-slate-600" ref="navList">
-                <div class="hamburger-menu" ref="menu" @click="showMenu">
+                <div class="hamburger-menu" @click="showMenu">
                     <div class="line line-1"></div>
                     <div class="line line-2"></div>
                     <div class="line line-3"></div>
@@ -24,33 +24,27 @@
     </header>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia';
+<script setup>
+import { ref } from 'vue'
 import { useAuthStore } from '../stores/auth';
 import { RouterLink } from 'vue-router'
-import ModalForm from './ModalForm.vue';
+import { storeToRefs } from 'pinia';
 
-export default {
-    name: "Header",
-    computed: {
-        ...mapState(useAuthStore, ['isLoggedIn', 'loggedInUser'])
-    },
-    methods: {
-        ...mapActions(useAuthStore, ['logout']),
-        showMenu() {
-            this.$refs.navList.classList.toggle('change');
-        },
-        handleBtnclick() {
-            this.$refs.navList.classList.toggle('change');
-        },
-        handleLogout() {
-            this.logout();
-            this.handleBtnclick();
-        }
-    },
-    components: {
-        ModalForm
-    }
+const authStore = useAuthStore();
+const { isLoggedIn, loggedInUser } = storeToRefs(authStore);
+
+const navList = ref(null);
+function showMenu() {
+    navList.value.classList.toggle('change');
+}
+
+function handleBtnclick() {
+    navList.value.classList.toggle('change');
+}
+
+function handleLogout() {
+    authStore.logout();
+    handleBtnclick();
 }
 </script>
 

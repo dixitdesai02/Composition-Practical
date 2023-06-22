@@ -9,17 +9,8 @@
 
 </template>
 
-<script>
+<script setup>
 import { RouterView } from "vue-router";
-
-    export default {
-        name: "App",
-        computed: {
-            shouldApplyTransition() {
-                return this.$route.name === 'login' || this.$route.name === 'register';
-            }
-        }
-    }
 </script>
 
 <style scoped>

@@ -21,37 +21,31 @@
         </section>
 </template>
 
-<script>
+<script setup>
+    import { reactive, ref } from 'vue';
+    import { useRoute, useRouter } from 'vue-router';
     import Loader from '../components/Loader.vue';
-    import { mapActions, mapState } from 'pinia';
     import { useCarData } from '../stores/carData';
 
-    export default {
-        name: "CarDetails",
-        data() {
-            return {
-                isLoading: true,
-                carDetails: {}
-            }
-        },
-        computed: {
-            ...mapState(useCarData, ['carDetailsById'])     
-        },
-        methods: {
-            ...mapActions(useCarData, ['fetchCars']),
-            goBack() {
-                this.$router.go(-1);
-            }
-        },
-        async created() {
-            await this.fetchCars();
-            this.carDetails = this.carDetailsById(this.$route.params.id);
-            this.isLoading = false;
-        },
-        components: {
-            Loader
-        }
+    let isLoading = ref(true);
+    let carDetails = reactive({});
+
+    const carStore = useCarData();
+    const route = useRoute();
+
+    async function fetchData() {
+        await carStore.fetchCars();
+        carDetails = carStore.carDetailsById(route.params.id);
+        isLoading.value = false;
     }
+    fetchData()
+
+    const router = useRouter();
+
+    function goBack() {
+        router.go(-1);
+    }
+
 </script>
 
 <style scoped>

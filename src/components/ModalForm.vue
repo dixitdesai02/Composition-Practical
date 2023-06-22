@@ -23,7 +23,7 @@
                         class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                         v-model="formData.name"
                         />
-                        <label for="name" class="absolute duration-300 top-3 origin-0 text-gray-500">Name</label>
+                        <label for="name" class="absolute duration-300 top-3 origin-0 text-gray-500">Name*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="name"/>
                     </div>
     
@@ -37,7 +37,7 @@
                             class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                             />
                         </Field>
-                        <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Detail</label>
+                        <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Detail*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="details"/>
                     </div>
     
@@ -49,7 +49,7 @@
                         class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                         v-model="formData.image"
                         />
-                        <label for="image" class="absolute duration-300 top-3 origin-0 text-gray-500">Image URL</label>
+                        <label for="image" class="absolute duration-300 top-3 origin-0 text-gray-500">Image URL*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="image"/>
                     </div>
     
@@ -64,7 +64,7 @@
                         v-model="formData.price"
                         />
                         <div class="absolute top-0 left-0 mt-3 ml-1 text-gray-400">$</div>
-                        <label for="price" class="absolute duration-300 top-3 left-5 origin-0 text-gray-500">Car Price</label>
+                        <label for="price" class="absolute duration-300 top-3 left-5 origin-0 text-gray-500">Car Price*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="price"/>
                     </div>
     
@@ -85,83 +85,76 @@
 </template>
 
 
-<script>
-    import { mapActions, mapState, mapWritableState } from 'pinia';
+<script setup>
+    import { ref, reactive, watch } from 'vue';
     import Swal from 'sweetalert2';
     import { useCarData } from '../stores/carData';
     import { useModalStore } from '../stores/modalStore';
+    import { storeToRefs } from 'pinia';
 
-    export default {
-        name: "ModalForm",
-        data() {
-            return {
-                formData: {},
-                schema: {
-                    name: "required|min:3|max:50",
-                    details: "required|min:30|max:120",
-                    image: "required|url",
-                    price: "required|numeric|min_value:100|max_value:100000000"
-                },
-                showLoading: false
-            };
-        },
-        computed: {
-            ...mapState(useModalStore, ['typeOfModal', 'editData']),
-            ...mapWritableState(useModalStore, ['showModal'])
-        },
-        methods: {
-            ...mapActions(useCarData, ['addCar', 'editCar']),
+    let formData = reactive({});
 
-            closeModal() {
-                this.showModal = false;
-            },
-            async handleSubmit() {
-                this.showLoading = true;
-                if (this.typeOfModal === 'add') {
-                    try {
-                        await this.addCar(this.formData);
-                        this.notify();
-                    }
-                    catch(error) {
-                        alert("Error! ", error)
-                    }
-                }
-                else {
-                    try {
-                        await this.editCar(this.formData.id, this.formData);
-                        this.notify();
-                    }
-                    catch(error) {
-                        alert("Error! ", error)
-                    }
-                }
-                this.closeModal();
-                this.showLoading = false;
-            },
-            notify() {
-                Swal.fire({
-                    title: `Car ${this.typeOfModal === 'add' ? 'Created': 'Updated'}!`,
-                    html: `
-                        <br/>
-                        <img src="${this.formData.image}" alt="Car Image" width="225" height="225" style="margin: auto" />
-                        <br/>
-                        <strong>Name:</strong> ${this.formData.name} <br/>
-                        <strong>Details:</strong> ${this.formData.details} <br/>
-                        <strong>Price:</strong> $${this.formData.price} <br/>
-                    `, 
-                    confirmButtonText: "Done!",
-                    confirmButtonColor: "#475569",
-                });
+    const schema = {
+        name: "required|min:3|max:50",
+        details: "required|min:30|max:120",
+        image: "required|url",
+        price: "required|numeric|min_value:100|max_value:100000000"
+    };
+
+    let showLoading = ref(false)
+
+    const modalStore = useModalStore();
+    const { typeOfModal, editData, showModal } = storeToRefs(modalStore);
+
+    function closeModal() {
+        showModal.value = false;
+    }
+
+    watch(editData, (newValue) => {
+        formData = {...newValue}
+    }, { deep: true })
+
+    const carStore = useCarData();
+
+
+    async function handleSubmit() {
+        showLoading.value = true;
+        if (typeOfModal.value === 'add') {
+            try {
+                await carStore.addCar(formData);
+                notify();
             }
-        },
-        watch: {
-            editData: {
-                handler(newValue) {
-                    this.formData = {...newValue}
-                },
-                immediate: true
+            catch(error) {
+                alert(error)
             }
         }
+        else {
+            try {
+                await carStore.editCar(formData.id, formData);
+                notify();
+            }
+            catch(error) {
+                alert(error)
+            }
+        }
+        closeModal();
+        showLoading.value = false;
+    }
+
+    function notify() {
+        Swal.fire({
+            title: `Car ${typeOfModal.value === 'add' ? 'Created': 'Updated'}!`,
+            html: `
+                <br/>
+                <img src="${formData.image}" alt="Car Image" width="225" height="225" style="margin: auto" />
+                <br/>
+                <strong>Name:</strong> ${formData.name} <br/>
+                <strong>Details:</strong> ${formData.details} <br/>
+                <strong>Price:</strong> $${formData.price} <br/>
+            `, 
+            confirmButtonText: "Done!",
+            confirmButtonColor: "#475569",
+        });
     }
 </script>
 
