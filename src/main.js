@@ -4,8 +4,10 @@ import './index.css'
 import { createPinia } from 'pinia'
 
 import Navbar from "./components/Navbar.vue";
-import validation from './includes/validation';
 import router from './router/index';
+import validation from './plugins/validation';
+import i18n from './plugins/i18n';
+import vuetify from './plugins/vuetify';
 
 const app = createApp(App);
 
@@ -14,6 +16,8 @@ app.use(pinia)
 
 app.use(router)
 app.use(validation)
+app.use(i18n)
+app.use(vuetify)
 
 app.component("Navbar", Navbar)
 

@@ -1,12 +1,12 @@
 <template>
     <section>
         <main v-if="!isLoading" class="w-5/6 max-w-screen-xl mx-auto">
-            <div class="button-wrapper flex flex-row justify-center sm:justify-end">
-                <button @click="showAddForm" class="mt-3 px-5 py-2 text-md font-semibold text-center text-slate-700 hover:bg-slate-300 bg-slate-200 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-400">
-                    ADD CAR
+            <div class="button-wrapper flex flex-row justify-center">
+                <button @click="showAddForm" :class="{'text-xl tracking-wide': $i18n.locale === 'gj'}" class="mt-3 px-5 py-2 text-md font-semibold text-center text-slate-700 hover:bg-slate-300 bg-slate-200 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-400" >
+                    {{ $t("home.add") }}
                 </button>
             </div>
-            <section v-if="!cars" class="py-5 flex flex-col">
+            <section v-if="cars.length === 0" class="py-5 flex flex-col">
                 <h2 class="text-4xl font-semibold text-slate-700 text-center">No Cars Found!</h2>
                 <img class="w-full sm:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto" src="/no-cars.webp" alt="No Cars" />
             </section>
@@ -81,5 +81,11 @@
     .fade-leave-to {
         opacity: 0;
         transform: translateY(-5rem);
+    }
+
+    @media screen and (min-width: 640px) {
+        .button-wrapper {
+            justify-content: end !important;
+        }
     }
 </style>
