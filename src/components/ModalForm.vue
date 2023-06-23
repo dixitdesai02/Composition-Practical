@@ -10,7 +10,7 @@
                 <div class="mx-auto max-w-md bg-white border-0 sm:rounded-3xl">
                     <Form id="form" :validation-schema="schema" @submit="handleSubmit">
                         <div class="flex justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-slate-700 pb-2"><span v-if="typeOfModal === 'add'">{{$t('form.add')}}</span> <span v-else>{{$t('form.edit')}}</span></h3>
+                            <h3 class="modal-title text-2xl font-bold text-slate-700 pb-2"><span v-if="typeOfModal === 'add'">{{$t('form.add')}}</span> <span v-else>{{$t('form.edit')}}</span></h3>
                             <button type="reset" class="text-gray-600 hover:text-gray-800 text-3xl" @click="closeModal">&times;</button>
                         </div>
     
@@ -72,7 +72,7 @@
                         <small>* {{$t('form.required')}}</small>
                     </div>
 
-                    <div class="mt-4 flex justify-end" :class="{'text-xl tracking-wide': $i18n.locale === 'gj'}">
+                    <div class="btns-wrapper mt-4 flex justify-end" :class="{'text-xl tracking-wide': $i18n.locale === 'gj'}">
                         <button v-if="typeOfModal === 'add' && !showLoading" class="px-5 py-2 text-md font-bold text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300">{{ $t("form.save") }}</button>
                         <button v-else-if="!showLoading" class="px-5 py-2 text-md font-bold text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300">{{ $t("form.update") }}</button>
                         <img v-show="showLoading" class="bg-slate-600 rounded-lg px-3 w-16 object-contain" src="/spinner.gif" alt="Spinner" />

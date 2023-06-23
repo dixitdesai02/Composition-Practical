@@ -9,10 +9,10 @@
                 {{ car.details?.length > 110 ? car.details?.slice(0, 100) + "...": car.details }}
             </p>
             <div class="flex items-center justify-between">
-                <button @click="redirectToDetails" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300" :class="{'text-xl': $i18n.locale === 'gj'}">
+                <RouterLink :to="`/details/${car.id}`" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300" :class="{'text-xl': $i18n.locale === 'gj'}">
                     {{ $t("home.info") }}
                    <svg v-if="car.price" aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </button>
+                </RouterLink>
 
                 <div class="icon-wrapper flex justify-between w-[4em] gap-2">
                     <img @click="showEditForm" src="/edit.svg" alt="Edit" class="w-5 h-6 object-contain cursor-pointer opacity-90"/>
@@ -28,22 +28,15 @@
     import { useCarData } from '../stores/carData';
     import { useModalStore } from '../stores/modalStore';
     import { storeToRefs } from 'pinia';
-    import { useRouter } from 'vue-router';
 
     const props = defineProps(['car']);
 
     const modalStore = useModalStore();
     const { showModal, typeOfModal, editData } = storeToRefs(modalStore);
 
-    const router = useRouter();
-
-    function redirectToDetails() {
-        router.push(`/details/${props.car.id}`);
-    }
-
     function showEditForm() {
         showModal.value = true;
-        typeOfModal.value = 'edit',
+        typeOfModal.value = 'edit';
         editData.value = { ...props.car }
     }
 

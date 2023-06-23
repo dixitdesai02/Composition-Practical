@@ -5,6 +5,7 @@
                 <h1 class="text-2xl sm:text-3xl text-slate-200 font-bold">Car Zone</h1>
                 <h3 class="text-md mt-1 text-sky-300 font-semibold" :class="{'text-xl tracking-wide': $i18n.locale === 'gj'}">-{{ $t("header.tagline") }}</h3>
             </RouterLink>
+
             <div class="nav-list bg-slate-600" ref="navList">
                 <div class="hamburger-menu" @click="showMenu">
                     <div class="line line-1"></div>
@@ -37,6 +38,8 @@ import { ref } from 'vue'
 import { useAuthStore } from '../stores/auth';
 import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia';
+
+const testing = ref("test123");
 
 const authStore = useAuthStore();
 const { isLoggedIn, loggedInUser, isAdmin } = storeToRefs(authStore);

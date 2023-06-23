@@ -11,14 +11,12 @@ describe('CarDetails.vue', () => {
         await carData.fetchCars();
 
         const carDetails = carData.carDetailsById(2533);
-    
-        console.log(carDetails);
 
         let isLoading = ref(false);
 
         const wrapper = shallowMount(CarDetails, {
-            data() {
-                return {
+            global: {
+                mocks: {
                     carDetails, 
                     isLoading
                 }
