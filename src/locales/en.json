@@ -1,0 +1,26 @@
+{
+    "home": {
+        "add": "ADD CAR",
+        "info": "Info"
+    },
+    "header": {
+        "tagline": "Driving Dreams",
+        "users": "Users",
+        "home": "Home",
+        "logout": "Logout",
+        "login": "Login",
+        "register": "Register"
+    },
+    "form": {
+        "add":"ADD CAR",
+        "edit": "EDIT CAR",
+        "name": "Name",
+        "detail": "Detail",
+        "image": "Image URL",
+        "price": "Price",
+        "required": "indicates required field",
+        "save": "Save",
+        "update": "Update",
+        "cancel": "Cancel"
+    }
+}

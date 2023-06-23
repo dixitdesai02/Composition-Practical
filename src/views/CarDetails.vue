@@ -1,7 +1,7 @@
 <template>
         <section>
             <Loader v-show="isLoading"/>
-            <section v-show="!isLoading" class="w-5/6 max-w-6xl m-auto">
+            <section v-show="!isLoading" class="details w-5/6 max-w-6xl m-auto" :id="`id-${carDetails.id}`">
                 <div class="back mt-5 cursor-pointer" @click="goBack">
                     <img src="/back.svg" alt="back" class="w-10 h-10 object-cover">
                 </div>

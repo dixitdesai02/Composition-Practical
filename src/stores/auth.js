@@ -7,7 +7,8 @@ export const useAuthStore = defineStore('authStore', {
             baseURL: import.meta.env.VITE_AUTH_API_BASEURL,
             users: [],
             isLoggedIn: JSON.parse(sessionStorage.getItem('isLoggedIn')),
-            loggedInUser: sessionStorage.getItem("loggedInUser")
+            loggedInUser: sessionStorage.getItem("loggedInUser"),
+            isAdmin: sessionStorage.getItem("isAdmin")
         }
     },
 
@@ -35,8 +36,13 @@ export const useAuthStore = defineStore('authStore', {
             this.isLoggedIn = true;
             sessionStorage.setItem('isLoggedIn', true);
             sessionStorage.setItem('token', 'thisisyoursecrettoken');
-            sessionStorage.setItem('loggedInUser', matchedUser.name)
+            sessionStorage.setItem('loggedInUser', matchedUser.name);
             this.loggedInUser = matchedUser.name;
+
+            if (matchedUser.role === "admin") {
+                sessionStorage.setItem('isAdmin', true);
+                this.isAdmin = true;
+            }
         },
 
         logout() {
@@ -45,6 +51,8 @@ export const useAuthStore = defineStore('authStore', {
             sessionStorage.removeItem('token');
             sessionStorage.removeItem('loggedInUser');
             this.loggedInUser = null;
+            sessionStorage.removeItem('isAdmin');
+            this.isAdmin = false;
         },
     }
 })

@@ -10,7 +10,7 @@
                     id="name"
                     name="name" 
                     placeholder=" "
-                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.name"
                     />
                     <label for="name" class="absolute duration-300 top-3 origin-0 text-gray-500">Name*</label>
@@ -23,7 +23,7 @@
                     id="email"
                     name="email"
                     placeholder=" "
-                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.email"
                     />
                     <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Email Address*</label>
@@ -35,7 +35,7 @@
                     id="password"
                     name="password"
                     placeholder=" "
-                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.password"
                     />
                     <label for="password" class="absolute duration-300 top-3 origin-0 text-gray-500">Password*</label>
@@ -47,7 +47,7 @@
                     id="confirmpassword"
                     name="confirmPassword"
                     placeholder=" "
-                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     />
                     <label for="confirmpassword" class="absolute duration-300 top-3 origin-0 text-gray-500">Confirm Password*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="confirmPassword"/>
@@ -60,7 +60,7 @@
                             as="select"
                             id="role"
                             placeholder="Choose"
-                            class="text-slate-800 ml-3 pl-1 pb-1 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                            class="text-slate-800 ml-3 pl-1 pb-1 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                             v-model="inputData.role"
                             >
                                 <option value="admin">Admin</option>
@@ -110,7 +110,7 @@
                     id="dob"
                     name="dob"
                     placeholder=" "
-                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="inputData.dob"
                     />
                     <label for="dob" class="absolute duration-300 top-3 origin-0 text-gray-500">Date Of Birth*</label>
@@ -124,16 +124,23 @@
                     id="age"
                     name="age"
                     placeholder=" "
-                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                    class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                     v-model="getAge"
                     />
                     <label for="age" class="absolute duration-300 top-3 origin-0 text-gray-500">Age*</label>
                     <ErrorMessage class="text-red-600 text-sm" name="age"/>
                 </div>
+                
+                <div class="text-slate-500 flex justify-end">
+                    <small>* indicates required field</small>
+                </div>
 
                 <button type="submit" v-show="!showLoading" class="my-1 px-5 py-2 text-md font-bold text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300">Register</button>
                 <img v-show="showLoading" class="bg-slate-600 rounded-lg px-3 w-16 h-11 object-contain" src="/spinner.gif" alt="Spinner" />
             </Form>
+        </div>
+        <div class="text-center text-slate-700 text-sm mt-3">
+            Existing User? <RouterLink :to="{name: 'login'}" class="text-sky-700 cursor-pointer hover:underline">Login</RouterLink>
         </div>
     </div>
 </template>
@@ -188,3 +195,9 @@
         showLoading.value = false;
     }
 </script>
+
+<style scoped>
+input, select {
+    border-bottom: 2px solid rgb(229 231 235);
+}
+</style>

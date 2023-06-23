@@ -1,6 +1,6 @@
 <template>
     <transition name="modal-transition" :duration="{ enter: 400, leave: 100 }" mode="out-in"> 
-    <div class="fixed inset-0 z-40 bg-black bg-opacity-50" v-if="showModal">
+    <div class="fixed overlay inset-0 z-40" v-if="showModal">
 
         <div class="inner z-50">   
     
@@ -10,7 +10,7 @@
                 <div class="mx-auto max-w-md bg-white border-0 sm:rounded-3xl">
                     <Form id="form" :validation-schema="schema" @submit="handleSubmit">
                         <div class="flex justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-slate-700 pb-2"><span v-if="typeOfModal === 'add'">ADD</span> <span v-else>EDIT</span> CAR</h3>
+                            <h3 class="modal-title text-2xl font-bold text-slate-700 pb-2"><span v-if="typeOfModal === 'add'">{{$t('form.add')}}</span> <span v-else>{{$t('form.edit')}}</span></h3>
                             <button type="reset" class="text-gray-600 hover:text-gray-800 text-3xl" @click="closeModal">&times;</button>
                         </div>
     
@@ -20,10 +20,10 @@
                         id="name"
                         name="name" 
                         placeholder=" "
-                        class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                        class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                         v-model="formData.name"
                         />
-                        <label for="name" class="absolute duration-300 top-3 origin-0 text-gray-500">Name*</label>
+                        <label for="name" class="absolute duration-300 top-3 origin-0 text-gray-500">{{$t('form.name')}}*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="name"/>
                     </div>
     
@@ -34,10 +34,10 @@
                             name="details"
                             placeholder=" "
                             rows="3"
-                            class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                            class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                             />
                         </Field>
-                        <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">Detail*</label>
+                        <label for="email" class="absolute duration-300 top-3 origin-0 text-gray-500">{{$t('form.detail')}}*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="details"/>
                     </div>
     
@@ -46,10 +46,10 @@
                         id="image"
                         name="image"
                         placeholder=" "
-                        class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                        class="text-slate-800 pt-3 pb-2 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                         v-model="formData.image"
                         />
-                        <label for="image" class="absolute duration-300 top-3 origin-0 text-gray-500">Image URL*</label>
+                        <label for="image" class="absolute duration-300 top-3 origin-0 text-gray-500">{{$t('form.image')}}*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="image"/>
                     </div>
     
@@ -60,19 +60,23 @@
                         id="price"
                         name="price"
                         placeholder=" "
-                        class="text-slate-800 pt-3 pb-2 pl-5 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
+                        class="text-slate-800 pt-3 pb-2 pl-5 block w-full px-0 mt-0 bg-transparent appearance-none focus:outline-none focus:ring-0 focus:border-slate-600 border-gray-200"
                         v-model="formData.price"
                         />
                         <div class="absolute top-0 left-0 mt-3 ml-1 text-gray-400">$</div>
-                        <label for="price" class="absolute duration-300 top-3 left-5 origin-0 text-gray-500">Car Price*</label>
+                        <label for="price" class="absolute duration-300 top-3 left-5 origin-0 text-gray-500">{{$t('form.price')}}*</label>
                         <ErrorMessage class="text-red-600 text-sm" name="price"/>
                     </div>
-    
-                    <div class="mt-4 flex justify-end">
-                        <button v-if="typeOfModal === 'add' && !showLoading" class="px-5 py-2 text-md font-bold text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300">Save</button>
-                        <button v-else-if="!showLoading" class="px-5 py-2 text-md font-bold text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300">Update</button>
+                    
+                    <div class="text-slate-600">
+                        <small>* {{$t('form.required')}}</small>
+                    </div>
+
+                    <div class="btns-wrapper mt-4 flex justify-end" :class="{'text-xl tracking-wide': $i18n.locale === 'gj'}">
+                        <button v-if="typeOfModal === 'add' && !showLoading" class="px-5 py-2 text-md font-bold text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300">{{ $t("form.save") }}</button>
+                        <button v-else-if="!showLoading" class="px-5 py-2 text-md font-bold text-center text-white bg-slate-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-slate-300">{{ $t("form.update") }}</button>
                         <img v-show="showLoading" class="bg-slate-600 rounded-lg px-3 w-16 object-contain" src="/spinner.gif" alt="Spinner" />
-                        <button type="reset" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 ml-2 rounded" @click="closeModal">Cancel</button>
+                        <button type="reset" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 ml-2 rounded" @click="closeModal">{{ $t("form.cancel") }}</button>
                     </div>
     
                     </Form>
@@ -195,5 +199,12 @@
     }
 }
 
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+input, textarea {
+    border-bottom: 2px solid rgb(229 231 235);
+}
 </style>
 

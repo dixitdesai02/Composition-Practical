@@ -38,6 +38,16 @@ const routes = [
         }
     },
     {
+        path: "/users",
+        name: "users",
+        component: () => import('../views/Users.vue'),
+        meta: {
+            title: "Users | CarZone",
+            requiresAuth: true,
+            requiresAdmin: true
+        }
+    },
+    {
         path: '/:catchAll(.*)',
         name: 'notFound',
         component: () => import('../views/NotFound.vue'),
@@ -55,6 +65,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const isAutheticated = JSON.parse(sessionStorage.getItem('isLoggedIn')) && sessionStorage.getItem('token');
+    const isAdmin = JSON.parse(sessionStorage.getItem('isAdmin'));
 
     if (to.meta.requiresAuth && !isAutheticated) {
         alert("Please login to continue..");
@@ -63,6 +74,9 @@ router.beforeEach((to, from, next) => {
     else if (to.meta.guest && isAutheticated) {
         next("/");
     } 
+    else if (to.meta.requiresAdmin && !isAdmin) {
+        next("/");
+    }
     else {
         next();
     }
